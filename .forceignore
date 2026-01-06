@@ -1,6 +1,10 @@
 # Ignore test data files
 force-app/main/default/lwc/**/__tests__/data/*.json
 
-**/jsconfig.json
+# Ignore all test files
+**/__tests__/**
+**/*.test.js
 
+# Ignore IDE and config files
+**/jsconfig.json
 **/.eslintrc.json
