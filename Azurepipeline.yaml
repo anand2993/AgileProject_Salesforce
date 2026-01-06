@@ -1,0 +1,34 @@
+trigger:
+- main
+- 
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '18.x'
+    displayName: 'Use Node.js'
+
+  - script: |
+      npm install --global sfdx-cli
+    displayName: 'Install Salesforce CLI'
+
+  - task: DownloadSecureFile@1
+    inputs:
+      secureFile: 'server.key'
+    displayName: 'Download JWT key'
+
+  - script: |
+      sfdx force:auth:jwt:grant \
+        -i $(SF_CLIENT_ID) \
+        -f $(Agent.TempDirectory)/server.key \
+        -o $(SF_USERNAME) \
+        -r https://login.salesforce.com \
+        -a DevOrg
+    displayName: 'Auth to Salesforce'
+
+  - script: |
+      sfdx force:org:display -u DevOrg
+    displayName: 'Verify Salesforce connection'
