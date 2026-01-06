@@ -6,7 +6,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-- group: DevOrgVariables 
+- group: DevOrgVeriables 
 
 steps:
   - task: NodeTool@0
