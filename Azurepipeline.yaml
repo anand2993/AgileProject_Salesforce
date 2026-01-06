@@ -27,7 +27,7 @@ steps:
       sfdx force:auth:jwt:grant \
         -i $(SF_CLIENT_ID) \
         -f $(Agent.TempDirectory)/server.key \
-        -o $(SF_USERNAME) \
+        -u $(SF_USERNAME) \
         -r https://login.salesforce.com \
         -a DevOrg
     displayName: 'Auth to Salesforce'
