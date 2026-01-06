@@ -35,3 +35,10 @@ steps:
   - script: |
       sfdx force:org:display -u DevOrg
     displayName: 'Verify Salesforce connection'
+
+  - script: |
+      sfdx force:source:deploy \
+        -p force-app \
+        -u DevOrg \
+        --testlevel RunLocalTests
+    displayName: 'Deploy to Salesforce'
